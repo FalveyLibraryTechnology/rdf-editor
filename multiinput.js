@@ -1,11 +1,9 @@
-var editor;
-
-function init() {
-  var elem = document.getElementById('editor');
-  var row = document.createElement('div');
+function EditorFactory(id) {
+  var elem = document.getElementById(id),
+      row = document.createElement('div');
   row.className = 'row';
   elem.appendChild(row);
-  editor = {
+  var editor = {
     elem: elem,
     row: row,
     columns: [],
@@ -13,11 +11,82 @@ function init() {
     maxColumns: 3,
     rows: 1,
     x: 0,
-    y: 0
+    y: 0,
+    // Focus element
+    focus: function () {
+      this.inputs[editor.x][editor.y].focus();
+    },
+    // Create new input
+    newInput: function () {
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'node';
+      return input;
+    },
+    // Create input placeholder
+    newEmptyInput: function () {
+      var div = document.createElement('div');
+      div.className = 'empty';
+      div.innerHTML = '&nbsp;';
+      return div;
+    },
+    // Replace placeholder with element
+    replaceEmpty: function (x, y) {
+      var input = this.newInput();
+      this.columns[x].replaceChild(input, this.inputs[x][y]);
+      this.inputs[x][y] = input;
+    },
+    // Add a column to right
+    addColumn: function (row) {
+      if (typeof row === 'undefined') {
+        row = 0;
+      }
+      var cinputs = [],
+          col = document.createElement('div');
+      col.className = 'four col';
+      for (var i = 0; i < row; i++) {
+        var empty = this.newEmptyInput();
+        col.appendChild(empty);
+        cinputs.push(empty);
+      }
+      var input = this.newInput();
+      col.appendChild(input);
+      cinputs.push(input);
+      for (var i = row + 1; i < this.rows; i++) {
+        var empty = this.newEmptyInput();
+        col.appendChild(empty);
+        cinputs.push(empty);
+      }
+      this.row.appendChild(col);
+      this.columns.push(col);
+      this.inputs[this.inputs.length] = cinputs;
+      console.log(this.inputs);
+    },
+    // Add a row (fill in placeholders)
+    addRow: function () {
+      console.log('add empties');
+      for (var c = 0; c < this.columns.length; c++) {
+        if (c == this.x) {
+          var input = this.newInput();
+          this.columns[c].appendChild(input);
+          this.inputs[c][this.y] = input;
+        } else {
+          var empty = this.newEmptyInput();
+          this.columns[c].appendChild(empty);
+          this.inputs[c][this.y] = empty;
+        }
+      }
+      editor.rows++;
+    }
   };
-  newColumn(editor, 0);
-  editor.inputs[0][0].focus();
+  editor.addColumn(0);
+  editor.focus();
+  return editor;
+}
 
+var editor;
+function init() {
+  editor = EditorFactory('editor');
   document.addEventListener('keydown', function (event) {
     if (event.ctrlKey) {
       console.log(event.keyCode);
@@ -30,7 +99,7 @@ function init() {
       } else if (event.keyCode === 40) { // DOWN
         if (editor.x < editor.rows - 1) editor.y++;
       }
-      editor.inputs[editor.x][editor.y].focus();
+      editor.focus();
     } else {
       if (event.keyCode == 9) { // TAB
         event.preventDefault();
@@ -41,13 +110,13 @@ function init() {
         } else if (editor.x < editor.maxColumns - 1) {
           editor.x++;
           if (editor.x >= editor.columns.length) {
-            newColumn(editor, editor.y)
+            editor.addColumn(editor.y)
           }
         }
         if (editor.inputs[editor.x][editor.y].className === 'empty') {
-          replaceEmpty(editor, editor.x, editor.y);
+          editor.replaceEmpty(editor.x, editor.y);
         }
-        editor.inputs[editor.x][editor.y].focus();
+        editor.focus();
         console.log(editor);
       } else if (event.keyCode == 13) { // ENTER
         if (event.shiftKey) {
@@ -57,70 +126,15 @@ function init() {
         } else {
           editor.y++;
           if (editor.y >= editor.rows) {
-            console.log('add empties');
-            for (var c = 0; c < editor.columns.length; c++) {
-              if (c == editor.x) {
-                var input = newInput();
-                editor.columns[c].appendChild(input);
-                editor.inputs[c][editor.y] = input;
-              } else {
-                var empty = newEmptyInput();
-                editor.columns[c].appendChild(empty);
-                editor.inputs[c][editor.y] = empty;
-              }
-            }
-            editor.rows++;
+            editor.addRow();
           }
         }
         if (editor.inputs[editor.x][editor.y].className === 'empty') {
-          replaceEmpty(editor, editor.x, editor.y);
+          editor.replaceEmpty(editor.x, editor.y);
         }
-        editor.inputs[editor.x][editor.y].focus();
-//        console.log(editor);
+        editor.focus();
+        //        console.log(editor);
       }
     }
   }, false);
-}
-
-function newEmptyInput() {
-  var div = document.createElement('div');
-  div.className = 'empty';
-  div.innerHTML = '&nbsp;';
-  return div;
-}
-
-function replaceEmpty(ed, x, y) {
-  var input = newInput();
-  ed.columns[x].replaceChild(input, ed.inputs[x][y]);
-  ed.inputs[x][y] = input;
-}
-
-function newInput() {
-  var input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'node';
-  return input;
-}
-
-function newColumn(ed, row) {
-  var cinputs = [];
-  var col = document.createElement('div');
-  col.className = 'four col';
-  for (var i = 0; i < row; i++) {
-    var empty = newEmptyInput();
-    col.appendChild(empty);
-    cinputs.push(empty);
-  }
-  var input = newInput();
-  col.appendChild(input);
-  cinputs.push(input);
-  for (var i = row + 1; i < ed.rows; i++) {
-    var empty = newEmptyInput();
-    col.appendChild(empty);
-    cinputs.push(empty);
-  }
-  ed.row.appendChild(col);
-  ed.columns.push(col);
-  ed.inputs[ed.inputs.length] = cinputs;
-  console.log(ed.inputs);
 }
