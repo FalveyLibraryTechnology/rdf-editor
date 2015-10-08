@@ -1,0 +1,8 @@
+input[type="text"] { display: block; }
+input.node,
+div.empty {
+  box-sizing: border-box;
+  height: 24px;
+  padding: 2px;
+/*  border: 1px solid #aaa;*/
+}
