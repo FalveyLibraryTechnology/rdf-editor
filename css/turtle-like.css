@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Courier Prime";
+  src: url("../fonts/Courier Prime.ttf");
+}
+
+body {
+  background: #444;
+}
+
+textarea {
+  display: block;
+  width: 80%;
+  height: 90%;
+  margin: auto;
+  padding: .5em;
+  border: 1px solid #000;
+  font: 16px "Courier Prime", monospace;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 4px #66afe9;
+}
