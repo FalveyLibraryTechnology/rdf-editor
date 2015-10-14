@@ -55,4 +55,6 @@ function parseJSONs(jsons) {
       }
     }
   ]);
+  $('#editor').show();
+  $('progress').hide();
 }
