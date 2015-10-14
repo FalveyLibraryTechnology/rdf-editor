@@ -1,0 +1,98 @@
+{
+  "namespace": "rdfs",
+  "version": "2000/01",
+  "uri": "http://www.w3.org/2000/01/rdf-schema#",
+  "classes": [
+    {
+      "attr": "Resource",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#Resource",
+      "description": "The class resource, everything."
+    },
+    {
+      "attr": "Class",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#Class",
+      "description": "The class of classes.",
+      "subClassOf": "rdfs:Resource"
+    },
+    {
+      "attr": "Literal",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+      "description": "The class of literal values, eg. textual strings and integers.",
+      "subClassOf": "rdfs:Resource"
+    },
+    {
+      "attr": "Container",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#Container",
+      "subClassOf": "rdfs:Resource",
+      "description": "The class of RDF containers."
+    },
+    {
+      "attr": "ContainerMembershipProperty",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#ContainerMembershipProperty",
+      "description": "\"\"The class of container membership properties, rdf:_1, rdf:_2, ...,\n                    all of which are sub-properties of 'member'.\"\"",
+      "subClassOf": "rdf:Property"
+    },
+    {
+      "attr": "Datatype",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#Datatype",
+      "description": "The class of RDF datatypes.",
+      "subClassOf": "rdfs:Class"
+    }
+  ],
+  "predicates": [
+    {
+      "attr": "subClassOf",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "description": "The subject is a subclass of a class.",
+      "expects": "rdfs:Class"
+    },
+    {
+      "attr": "subPropertyOf",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+      "description": "The subject is a subproperty of a property.",
+      "expects": "rdf:Property"
+    },
+    {
+      "attr": "comment",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#comment",
+      "description": "A description of the subject resource.",
+      "expects": "rdfs:Literal"
+    },
+    {
+      "attr": "label",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+      "description": "A human-readable name for the subject.",
+      "expects": "rdfs:Literal"
+    },
+    {
+      "attr": "domain",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#domain",
+      "description": "A domain of the subject property.",
+      "expects": "rdfs:Class"
+    },
+    {
+      "attr": "range",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#range",
+      "description": "A range of the subject property.",
+      "expects": "rdfs:Class"
+    },
+    {
+      "attr": "seeAlso",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "description": "Further information about the subject resource.",
+      "expects": "rdfs:Resource"
+    },
+    {
+      "attr": "isDefinedBy",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
+      "description": "The defininition of the subject resource.",
+      "expects": "rdfs:Resource"
+    },
+    {
+      "attr": "member",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#member",
+      "description": "A member of the subject resource.",
+      "expects": "rdfs:Resource"
+    }
+  ]
+}
