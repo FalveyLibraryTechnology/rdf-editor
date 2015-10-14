@@ -1,0 +1,771 @@
+{
+  "namespace": "dc",
+  "version": "2012/06/14",
+  "uri": "http://purl.org/dc/terms/",
+  "classes": [
+    {
+      "attr": "abstract",
+      "description": "A summary of the resource.",
+      "label": "Abstract",
+      "uri": "http://purl.org/dc/terms/abstract"
+    },
+    {
+      "attr": "accessRights",
+      "description": "Information about who can access the resource or an indication of its security status.",
+      "label": "Access Rights",
+      "uri": "http://purl.org/dc/terms/accessRights"
+    },
+    {
+      "attr": "accrualMethod",
+      "description": "The method by which items are added to a collection.",
+      "label": "Accrual Method",
+      "uri": "http://purl.org/dc/terms/accrualMethod"
+    },
+    {
+      "attr": "accrualPeriodicity",
+      "description": "The frequency with which items are added to a collection.",
+      "label": "Accrual Periodicity",
+      "uri": "http://purl.org/dc/terms/accrualPeriodicity"
+    },
+    {
+      "attr": "accrualPolicy",
+      "description": "The policy governing the addition of items to a collection.",
+      "label": "Accrual Policy",
+      "uri": "http://purl.org/dc/terms/accrualPolicy"
+    },
+    {
+      "attr": "alternative",
+      "description": "An alternative name for the resource.",
+      "label": "Alternative Title",
+      "uri": "http://purl.org/dc/terms/alternative"
+    },
+    {
+      "attr": "audience",
+      "description": "A class of entity for whom the resource is intended or useful.",
+      "label": "Audience",
+      "uri": "http://purl.org/dc/terms/audience"
+    },
+    {
+      "attr": "available",
+      "description": "Date (often a range) that the resource became or will become available.",
+      "label": "Date Available",
+      "uri": "http://purl.org/dc/terms/available"
+    },
+    {
+      "attr": "bibliographicCitation",
+      "description": "A bibliographic reference for the resource.",
+      "label": "Bibliographic Citation",
+      "uri": "http://purl.org/dc/terms/bibliographicCitation"
+    },
+    {
+      "attr": "conformsTo",
+      "description": "An established standard to which the described resource conforms.",
+      "label": "Conforms To",
+      "uri": "http://purl.org/dc/terms/conformsTo"
+    },
+    {
+      "attr": "contributor",
+      "description": "An entity responsible for making contributions to the resource.",
+      "label": "Contributor",
+      "uri": "http://purl.org/dc/terms/contributor"
+    },
+    {
+      "attr": "coverage",
+      "description": "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant.",
+      "label": "Coverage",
+      "uri": "http://purl.org/dc/terms/coverage"
+    },
+    {
+      "attr": "created",
+      "description": "Date of creation of the resource.",
+      "label": "Date Created",
+      "uri": "http://purl.org/dc/terms/created"
+    },
+    {
+      "attr": "creator",
+      "description": "An entity primarily responsible for making the resource.",
+      "label": "Creator",
+      "uri": "http://purl.org/dc/terms/creator"
+    },
+    {
+      "attr": "date",
+      "description": "A point or period of time associated with an event in the lifecycle of the resource.",
+      "label": "Date",
+      "uri": "http://purl.org/dc/terms/date"
+    },
+    {
+      "attr": "dateAccepted",
+      "description": "Date of acceptance of the resource.",
+      "label": "Date Accepted",
+      "uri": "http://purl.org/dc/terms/dateAccepted"
+    },
+    {
+      "attr": "dateCopyrighted",
+      "description": "Date of copyright.",
+      "label": "Date Copyrighted",
+      "uri": "http://purl.org/dc/terms/dateCopyrighted"
+    },
+    {
+      "attr": "dateSubmitted",
+      "description": "Date of submission of the resource.",
+      "label": "Date Submitted",
+      "uri": "http://purl.org/dc/terms/dateSubmitted"
+    },
+    {
+      "attr": "description",
+      "description": "An account of the resource.",
+      "label": "Description",
+      "uri": "http://purl.org/dc/terms/description"
+    },
+    {
+      "attr": "educationLevel",
+      "description": "A class of entity, defined in terms of progression through an educational or training context, for which the described resource is intended.",
+      "label": "Audience Education Level",
+      "uri": "http://purl.org/dc/terms/educationLevel"
+    },
+    {
+      "attr": "extent",
+      "description": "The size or duration of the resource.",
+      "label": "Extent",
+      "uri": "http://purl.org/dc/terms/extent"
+    },
+    {
+      "attr": "format",
+      "description": "The file format, physical medium, or dimensions of the resource.",
+      "label": "Format",
+      "uri": "http://purl.org/dc/terms/format"
+    },
+    {
+      "attr": "hasFormat",
+      "description": "A related resource that is substantially the same as the pre-existing described resource, but in another format.",
+      "label": "Has Format",
+      "uri": "http://purl.org/dc/terms/hasFormat"
+    },
+    {
+      "attr": "hasPart",
+      "description": "A related resource that is included either physically or logically in the described resource.",
+      "label": "Has Part",
+      "uri": "http://purl.org/dc/terms/hasPart"
+    },
+    {
+      "attr": "hasVersion",
+      "description": "A related resource that is a version, edition, or adaptation of the described resource.",
+      "label": "Has Version",
+      "uri": "http://purl.org/dc/terms/hasVersion"
+    },
+    {
+      "attr": "identifier",
+      "description": "An unambiguous reference to the resource within a given context.",
+      "label": "Identifier",
+      "uri": "http://purl.org/dc/terms/identifier"
+    },
+    {
+      "attr": "instructionalMethod",
+      "description": "A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support.",
+      "label": "Instructional Method",
+      "uri": "http://purl.org/dc/terms/instructionalMethod"
+    },
+    {
+      "attr": "isFormatOf",
+      "description": "A related resource that is substantially the same as the described resource, but in another format.",
+      "label": "Is Format Of",
+      "uri": "http://purl.org/dc/terms/isFormatOf"
+    },
+    {
+      "attr": "isPartOf",
+      "description": "A related resource in which the described resource is physically or logically included.",
+      "label": "Is Part Of",
+      "uri": "http://purl.org/dc/terms/isPartOf"
+    },
+    {
+      "attr": "isReferencedBy",
+      "description": "A related resource that references, cites, or otherwise points to the described resource.",
+      "label": "Is Referenced By",
+      "uri": "http://purl.org/dc/terms/isReferencedBy"
+    },
+    {
+      "attr": "isReplacedBy",
+      "description": "A related resource that supplants, displaces, or supersedes the described resource.",
+      "label": "Is Replaced By",
+      "uri": "http://purl.org/dc/terms/isReplacedBy"
+    },
+    {
+      "attr": "isRequiredBy",
+      "description": "A related resource that requires the described resource to support its function, delivery, or coherence.",
+      "label": "Is Required By",
+      "uri": "http://purl.org/dc/terms/isRequiredBy"
+    },
+    {
+      "attr": "issued",
+      "description": "Date of formal issuance (e.g., publication) of the resource.",
+      "label": "Date Issued",
+      "uri": "http://purl.org/dc/terms/issued"
+    },
+    {
+      "attr": "isVersionOf",
+      "description": "A related resource of which the described resource is a version, edition, or adaptation.",
+      "label": "Is Version Of",
+      "uri": "http://purl.org/dc/terms/isVersionOf"
+    },
+    {
+      "attr": "language",
+      "description": "A language of the resource.",
+      "label": "Language",
+      "uri": "http://purl.org/dc/terms/language"
+    },
+    {
+      "attr": "license",
+      "description": "A legal document giving official permission to do something with the resource.",
+      "label": "License",
+      "uri": "http://purl.org/dc/terms/license"
+    },
+    {
+      "attr": "mediator",
+      "description": "An entity that mediates access to the resource and for whom the resource is intended or useful.",
+      "label": "Mediator",
+      "uri": "http://purl.org/dc/terms/mediator"
+    },
+    {
+      "attr": "medium",
+      "description": "The material or physical carrier of the resource.",
+      "label": "Medium",
+      "uri": "http://purl.org/dc/terms/medium"
+    },
+    {
+      "attr": "modified",
+      "description": "Date on which the resource was changed.",
+      "label": "Date Modified",
+      "uri": "http://purl.org/dc/terms/modified"
+    },
+    {
+      "attr": "provenance",
+      "description": "A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation.",
+      "label": "Provenance",
+      "uri": "http://purl.org/dc/terms/provenance"
+    },
+    {
+      "attr": "publisher",
+      "description": "An entity responsible for making the resource available.",
+      "label": "Publisher",
+      "uri": "http://purl.org/dc/terms/publisher"
+    },
+    {
+      "attr": "references",
+      "description": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.",
+      "label": "References",
+      "uri": "http://purl.org/dc/terms/references"
+    },
+    {
+      "attr": "relation",
+      "description": "A related resource.",
+      "label": "Relation",
+      "uri": "http://purl.org/dc/terms/relation"
+    },
+    {
+      "attr": "replaces",
+      "description": "A related resource that is supplanted, displaced, or superseded by the described resource.",
+      "label": "Replaces",
+      "uri": "http://purl.org/dc/terms/replaces"
+    },
+    {
+      "attr": "requires",
+      "description": "A related resource that is required by the described resource to support its function, delivery, or coherence.",
+      "label": "Requires",
+      "uri": "http://purl.org/dc/terms/requires"
+    },
+    {
+      "attr": "rights",
+      "description": "Information about rights held in and over the resource.",
+      "label": "Rights",
+      "uri": "http://purl.org/dc/terms/rights"
+    },
+    {
+      "attr": "rightsHolder",
+      "description": "A person or organization owning or managing rights over the resource.",
+      "label": "Rights Holder",
+      "uri": "http://purl.org/dc/terms/rightsHolder"
+    },
+    {
+      "attr": "source",
+      "description": "A related resource from which the described resource is derived.",
+      "label": "Source",
+      "uri": "http://purl.org/dc/terms/source"
+    },
+    {
+      "attr": "spatial",
+      "description": "Spatial characteristics of the resource.",
+      "label": "Spatial Coverage",
+      "uri": "http://purl.org/dc/terms/spatial"
+    },
+    {
+      "attr": "subject",
+      "description": "The topic of the resource.",
+      "label": "Subject",
+      "uri": "http://purl.org/dc/terms/subject"
+    },
+    {
+      "attr": "tableOfContents",
+      "description": "A list of subunits of the resource.",
+      "label": "Table Of Contents",
+      "uri": "http://purl.org/dc/terms/tableOfContents"
+    },
+    {
+      "attr": "temporal",
+      "description": "Temporal characteristics of the resource.",
+      "label": "Temporal Coverage",
+      "uri": "http://purl.org/dc/terms/temporal"
+    },
+    {
+      "attr": "title",
+      "description": "A name given to the resource.",
+      "label": "Title",
+      "uri": "http://purl.org/dc/terms/title"
+    },
+    {
+      "attr": "type",
+      "description": "The nature or genre of the resource.",
+      "label": "Type",
+      "uri": "http://purl.org/dc/terms/type"
+    },
+    {
+      "attr": "valid",
+      "description": "Date (often a range) of validity of a resource.",
+      "label": "Date Valid",
+      "uri": "http://purl.org/dc/terms/valid"
+    },
+    {
+      "attr": "contributor",
+      "description": "An entity responsible for making contributions to the resource.",
+      "label": "Contributor",
+      "uri": "http://purl.org/dc/elements/1.1/contributor"
+    },
+    {
+      "attr": "coverage",
+      "description": "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant.",
+      "label": "Coverage",
+      "uri": "http://purl.org/dc/elements/1.1/coverage"
+    },
+    {
+      "attr": "creator",
+      "description": "An entity primarily responsible for making the resource.",
+      "label": "Creator",
+      "uri": "http://purl.org/dc/elements/1.1/creator"
+    },
+    {
+      "attr": "date",
+      "description": "A point or period of time associated with an event in the lifecycle of the resource.",
+      "label": "Date",
+      "uri": "http://purl.org/dc/elements/1.1/date"
+    },
+    {
+      "attr": "description",
+      "description": "An account of the resource.",
+      "label": "Description",
+      "uri": "http://purl.org/dc/elements/1.1/description"
+    },
+    {
+      "attr": "format",
+      "description": "The file format, physical medium, or dimensions of the resource.",
+      "label": "Format",
+      "uri": "http://purl.org/dc/elements/1.1/format"
+    },
+    {
+      "attr": "identifier",
+      "description": "An unambiguous reference to the resource within a given context.",
+      "label": "Identifier",
+      "uri": "http://purl.org/dc/elements/1.1/identifier"
+    },
+    {
+      "attr": "language",
+      "description": "A language of the resource.",
+      "label": "Language",
+      "uri": "http://purl.org/dc/elements/1.1/language"
+    },
+    {
+      "attr": "publisher",
+      "description": "An entity responsible for making the resource available.",
+      "label": "Publisher",
+      "uri": "http://purl.org/dc/elements/1.1/publisher"
+    },
+    {
+      "attr": "relation",
+      "description": "A related resource.",
+      "label": "Relation",
+      "uri": "http://purl.org/dc/elements/1.1/relation"
+    },
+    {
+      "attr": "rights",
+      "description": "Information about rights held in and over the resource.",
+      "label": "Rights",
+      "uri": "http://purl.org/dc/elements/1.1/rights"
+    },
+    {
+      "attr": "source",
+      "description": "A related resource from which the described resource is derived.",
+      "label": "Source",
+      "uri": "http://purl.org/dc/elements/1.1/source"
+    },
+    {
+      "attr": "subject",
+      "description": "The topic of the resource.",
+      "label": "Subject",
+      "uri": "http://purl.org/dc/elements/1.1/subject"
+    },
+    {
+      "attr": "title",
+      "description": "A name given to the resource.",
+      "label": "Title",
+      "uri": "http://purl.org/dc/elements/1.1/title"
+    },
+    {
+      "attr": "type",
+      "description": "The nature or genre of the resource.",
+      "label": "Type",
+      "uri": "http://purl.org/dc/elements/1.1/type"
+    },
+    {
+      "attr": "memberOf",
+      "description": "A relationship between a resource and a vocabulary encoding scheme which indicates that the resource is a member of a set.",
+      "label": "Member Of",
+      "uri": "http://purl.org/dc/dcam/memberOf"
+    }
+  ],
+  "predicates": [
+    {
+      "attr": "DCMIType",
+      "description": "The set of classes specified by the DCMI Type Vocabulary, used to categorize the nature or genre of the resource.",
+      "label": "DCMI Type Vocabulary",
+      "uri": "http://purl.org/dc/terms/DCMIType"
+    },
+    {
+      "attr": "DDC",
+      "description": "The set of conceptual resources specified by the Dewey Decimal Classification.",
+      "label": "DDC",
+      "uri": "http://purl.org/dc/terms/DDC"
+    },
+    {
+      "attr": "IMT",
+      "description": "The set of media types specified by the Internet Assigned Numbers Authority.",
+      "label": "IMT",
+      "uri": "http://purl.org/dc/terms/IMT"
+    },
+    {
+      "attr": "LCC",
+      "description": "The set of conceptual resources specified by the Library of Congress Classification.",
+      "label": "LCC",
+      "uri": "http://purl.org/dc/terms/LCC"
+    },
+    {
+      "attr": "LCSH",
+      "description": "The set of labeled concepts specified by the Library of Congress Subject Headings.",
+      "label": "LCSH",
+      "uri": "http://purl.org/dc/terms/LCSH"
+    },
+    {
+      "attr": "MESH",
+      "description": "The set of labeled concepts specified by the Medical Subject Headings.",
+      "label": "MeSH",
+      "uri": "http://purl.org/dc/terms/MESH"
+    },
+    {
+      "attr": "NLM",
+      "description": "The set of conceptual resources specified by the National Library of Medicine Classification.",
+      "label": "NLM",
+      "uri": "http://purl.org/dc/terms/NLM"
+    },
+    {
+      "attr": "TGN",
+      "description": "The set of places specified by the Getty Thesaurus of Geographic Names.",
+      "label": "TGN",
+      "uri": "http://purl.org/dc/terms/TGN"
+    },
+    {
+      "attr": "UDC",
+      "description": "The set of conceptual resources specified by the Universal Decimal Classification.",
+      "label": "UDC",
+      "uri": "http://purl.org/dc/terms/UDC"
+    },
+    {
+      "attr": "Box",
+      "description": "The set of regions in space defined by their geographic coordinates according to the DCMI Box Encoding Scheme.",
+      "label": "DCMI Box",
+      "uri": "http://purl.org/dc/terms/Box"
+    },
+    {
+      "attr": "ISO3166",
+      "description": "The set of codes listed in ISO 3166-1 for the representation of names of countries.",
+      "label": "ISO 3166",
+      "uri": "http://purl.org/dc/terms/ISO3166"
+    },
+    {
+      "attr": "ISO639-2",
+      "description": "The three-letter alphabetic codes listed in ISO639-2 for the representation of names of languages.",
+      "label": "ISO 639-2",
+      "uri": "http://purl.org/dc/terms/ISO639-2"
+    },
+    {
+      "attr": "ISO639-3",
+      "description": "The set of three-letter codes listed in ISO 639-3 for the representation of names of languages.",
+      "label": "ISO 639-3",
+      "uri": "http://purl.org/dc/terms/ISO639-3"
+    },
+    {
+      "attr": "Period",
+      "description": "The set of time intervals defined by their limits according to the DCMI Period Encoding Scheme.",
+      "label": "DCMI Period",
+      "uri": "http://purl.org/dc/terms/Period"
+    },
+    {
+      "attr": "Point",
+      "description": "The set of points in space defined by their geographic coordinates according to the DCMI Point Encoding Scheme.",
+      "label": "DCMI Point",
+      "uri": "http://purl.org/dc/terms/Point"
+    },
+    {
+      "attr": "RFC1766",
+      "description": "The set of tags, constructed according to RFC 1766, for the identification of languages.",
+      "label": "RFC 1766",
+      "uri": "http://purl.org/dc/terms/RFC1766"
+    },
+    {
+      "attr": "RFC3066",
+      "description": "The set of tags constructed according to RFC 3066 for the identification of languages.",
+      "label": "RFC 3066",
+      "uri": "http://purl.org/dc/terms/RFC3066"
+    },
+    {
+      "attr": "RFC4646",
+      "description": "The set of tags constructed according to RFC 4646 for the identification of languages.",
+      "label": "RFC 4646",
+      "uri": "http://purl.org/dc/terms/RFC4646"
+    },
+    {
+      "attr": "RFC5646",
+      "description": "The set of tags constructed according to RFC 5646 for the identification of languages.",
+      "label": "RFC 5646",
+      "uri": "http://purl.org/dc/terms/RFC5646"
+    },
+    {
+      "attr": "URI",
+      "description": "The set of identifiers constructed according to the generic syntax for Uniform Resource Identifiers as specified by the Internet Engineering Task Force.",
+      "label": "URI",
+      "uri": "http://purl.org/dc/terms/URI"
+    },
+    {
+      "attr": "W3CDTF",
+      "description": "The set of dates and times constructed according to the W3C Date and Time Formats Specification.",
+      "label": "W3C-DTF",
+      "uri": "http://purl.org/dc/terms/W3CDTF"
+    },
+    {
+      "attr": "Agent",
+      "description": "A resource that acts or has the power to act.",
+      "label": "Agent",
+      "uri": "http://purl.org/dc/terms/Agent"
+    },
+    {
+      "attr": "AgentClass",
+      "description": "A group of agents.",
+      "label": "Agent Class",
+      "uri": "http://purl.org/dc/terms/AgentClass"
+    },
+    {
+      "attr": "BibliographicResource",
+      "description": "A book, article, or other documentary resource.",
+      "label": "Bibliographic Resource",
+      "uri": "http://purl.org/dc/terms/BibliographicResource"
+    },
+    {
+      "attr": "FileFormat",
+      "description": "A digital resource format.",
+      "label": "File Format",
+      "uri": "http://purl.org/dc/terms/FileFormat"
+    },
+    {
+      "attr": "Frequency",
+      "description": "A rate at which something recurs.",
+      "label": "Frequency",
+      "uri": "http://purl.org/dc/terms/Frequency"
+    },
+    {
+      "attr": "Jurisdiction",
+      "description": "The extent or range of judicial, law enforcement, or other authority.",
+      "label": "Jurisdiction",
+      "uri": "http://purl.org/dc/terms/Jurisdiction"
+    },
+    {
+      "attr": "LicenseDocument",
+      "description": "A legal document giving official permission to do something with a Resource.",
+      "label": "License Document",
+      "uri": "http://purl.org/dc/terms/LicenseDocument"
+    },
+    {
+      "attr": "LinguisticSystem",
+      "description": "A system of signs, symbols, sounds, gestures, or rules used in communication.",
+      "label": "Linguistic System",
+      "uri": "http://purl.org/dc/terms/LinguisticSystem"
+    },
+    {
+      "attr": "Location",
+      "description": "A spatial region or named place.",
+      "label": "Location",
+      "uri": "http://purl.org/dc/terms/Location"
+    },
+    {
+      "attr": "LocationPeriodOrJurisdiction",
+      "description": "A location, period of time, or jurisdiction.",
+      "label": "Location, Period, or Jurisdiction",
+      "uri": "http://purl.org/dc/terms/LocationPeriodOrJurisdiction"
+    },
+    {
+      "attr": "MediaType",
+      "description": "A file format or physical medium.",
+      "label": "Media Type",
+      "uri": "http://purl.org/dc/terms/MediaType"
+    },
+    {
+      "attr": "MediaTypeOrExtent",
+      "description": "A media type or extent.",
+      "label": "Media Type or Extent",
+      "uri": "http://purl.org/dc/terms/MediaTypeOrExtent"
+    },
+    {
+      "attr": "MethodOfAccrual",
+      "description": "A method by which resources are added to a collection.",
+      "label": "Method of Accrual",
+      "uri": "http://purl.org/dc/terms/MethodOfAccrual"
+    },
+    {
+      "attr": "MethodOfInstruction",
+      "description": "A process that is used to engender knowledge, attitudes, and skills.",
+      "label": "Method of Instruction",
+      "uri": "http://purl.org/dc/terms/MethodOfInstruction"
+    },
+    {
+      "attr": "PeriodOfTime",
+      "description": "An interval of time that is named or defined by its start and end dates.",
+      "label": "Period of Time",
+      "uri": "http://purl.org/dc/terms/PeriodOfTime"
+    },
+    {
+      "attr": "PhysicalMedium",
+      "description": "A physical material or carrier.",
+      "label": "Physical Medium",
+      "uri": "http://purl.org/dc/terms/PhysicalMedium"
+    },
+    {
+      "attr": "PhysicalResource",
+      "description": "A material thing.",
+      "label": "Physical Resource",
+      "uri": "http://purl.org/dc/terms/PhysicalResource"
+    },
+    {
+      "attr": "Policy",
+      "description": "A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters.",
+      "label": "Policy",
+      "uri": "http://purl.org/dc/terms/Policy"
+    },
+    {
+      "attr": "ProvenanceStatement",
+      "description": "A statement of any changes in ownership and custody of a resource since its creation that are significant for its authenticity, integrity, and interpretation.",
+      "label": "Provenance Statement",
+      "uri": "http://purl.org/dc/terms/ProvenanceStatement"
+    },
+    {
+      "attr": "RightsStatement",
+      "description": "A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights.",
+      "label": "Rights Statement",
+      "uri": "http://purl.org/dc/terms/RightsStatement"
+    },
+    {
+      "attr": "SizeOrDuration",
+      "description": "A dimension or extent, or a time taken to play or execute.",
+      "label": "Size or Duration",
+      "uri": "http://purl.org/dc/terms/SizeOrDuration"
+    },
+    {
+      "attr": "Standard",
+      "description": "A basis for comparison; a reference point against which other things can be evaluated.",
+      "label": "Standard",
+      "uri": "http://purl.org/dc/terms/Standard"
+    },
+    {
+      "attr": "Collection",
+      "description": "An aggregation of resources.",
+      "label": "Collection",
+      "uri": "http://purl.org/dc/dcmitype/Collection"
+    },
+    {
+      "attr": "Dataset",
+      "description": "Data encoded in a defined structure.",
+      "label": "Dataset",
+      "uri": "http://purl.org/dc/dcmitype/Dataset"
+    },
+    {
+      "attr": "Event",
+      "description": "A non-persistent, time-based occurrence.",
+      "label": "Event",
+      "uri": "http://purl.org/dc/dcmitype/Event"
+    },
+    {
+      "attr": "Image",
+      "description": "A visual representation other than text.",
+      "label": "Image",
+      "uri": "http://purl.org/dc/dcmitype/Image"
+    },
+    {
+      "attr": "InteractiveResource",
+      "description": "A resource requiring interaction from the user to be understood, executed, or experienced.",
+      "label": "Interactive Resource",
+      "uri": "http://purl.org/dc/dcmitype/InteractiveResource"
+    },
+    {
+      "attr": "MovingImage",
+      "description": "A series of visual representations imparting an impression of motion when shown in succession.",
+      "label": "Moving Image",
+      "uri": "http://purl.org/dc/dcmitype/MovingImage"
+    },
+    {
+      "attr": "PhysicalObject",
+      "description": "An inanimate, three-dimensional object or substance.",
+      "label": "Physical Object",
+      "uri": "http://purl.org/dc/dcmitype/PhysicalObject"
+    },
+    {
+      "attr": "Service",
+      "description": "A system that provides one or more functions.",
+      "label": "Service",
+      "uri": "http://purl.org/dc/dcmitype/Service"
+    },
+    {
+      "attr": "Software",
+      "description": "A computer program in source or compiled form.",
+      "label": "Software",
+      "uri": "http://purl.org/dc/dcmitype/Software"
+    },
+    {
+      "attr": "Sound",
+      "description": "A resource primarily intended to be heard.",
+      "label": "Sound",
+      "uri": "http://purl.org/dc/dcmitype/Sound"
+    },
+    {
+      "attr": "StillImage",
+      "description": "A static visual representation.",
+      "label": "Still Image",
+      "uri": "http://purl.org/dc/dcmitype/StillImage"
+    },
+    {
+      "attr": "Text",
+      "description": "A resource consisting primarily of words for reading.",
+      "label": "Text",
+      "uri": "http://purl.org/dc/dcmitype/Text"
+    },
+    {
+      "attr": "VocabularyEncodingScheme",
+      "description": "An enumerated set of resources.",
+      "label": "Vocabulary Encoding Scheme",
+      "uri": "http://purl.org/dc/dcam/VocabularyEncodingScheme"
+    }
+  ]
+}
