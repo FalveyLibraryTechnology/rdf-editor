@@ -1,10 +1,17 @@
 function load(file, bar) {
   var p = new Promise(
     function(resolve, reject) {
-      $.getJSON(file, function(json) {
-        resolve(json);
-        bar.value = bar.value + 1;
-      });
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', file, true);
+      xhr.responseType = 'json';
+      xhr.onreadystatechange = function() {
+        var DONE = this.DONE || 4;
+        if (this.readyState === DONE) {
+          resolve(this.response);
+          bar.value = bar.value + 1;
+        }
+      };
+      xhr.send();
     }
   );
   return p;

@@ -7,50 +7,45 @@
   $.fn.autocomplete = function(settings, ops) {
 
     var options = $.extend( {}, $.fn.autocomplete.options, settings );
-    function show(element) { element.removeClass(options.hidingClass); }
-    function hide(element) {
-      element.addClass(options.hidingClass);
+    function show() {
+      $.fn.autocomplete.element.removeClass(options.hidingClass);
+    }
+    function hide() {
+      $.fn.autocomplete.element.addClass(options.hidingClass);
       cache = [];
     }
 
     function populate(value, input, element) {
       input.val(value);
-      hide(element);
+      hide();
     }
 
     function createList(data, input, element) {
-      if (data.length === 0) {
-        hide(element);
-        return;
-      } else {
-        var op = $('<div/>');
-        for (var i=0, len=Math.min(options.maxResults, data.length); i<len; i++) {
-          if (typeof data[i] === 'string') {
-            data[i] = {val: data[i]};
-          }
-          if (typeof data[i].href === "undefined") {
-            op.append(
-              $('<div/>')
-                .attr('value', data[i].val)
-                .html(data[i].val)
-                .addClass('item')
-            );
-          } else {
-            op.append(
-              $('<a/>')
-                .attr('href', data[i].href)
-                .attr('value', data[i].val)
-                .html(data[i].val)
-                .addClass('item')
-            );
-          }
+      var op = $('<div/>');
+      for (var i=0, len=Math.min(options.maxResults, data.length); i<len; i++) {
+        if (typeof data[i] === 'string') {
+          data[i] = {val: data[i]};
         }
-        element.html(op.html());
-        element.find('.item').click(function() {
-          populate($(this).attr('value'), input, element)
-        });
-        show(element);
+        var item = typeof data[i].href === 'undefined'
+          ? $('<div/>').attr('value', data[i].val)
+                      .html(data[i].val)
+                      .addClass('item')
+          : $('<a/>').attr('href', data[i].href)
+                    .attr('value', data[i].val)
+                    .attr('acitem', true)
+                    .html(data[i].val)
+                    .addClass('item')
+        if (typeof data[i].description !== 'undefined') {
+          item.append($('<small/>').text(data[i].description));
+        }
+        op.append(item);
       }
+      element.html(op.html());
+      element.find('.item').mousedown(function() {
+        populate($(this).attr('value'), input, element)
+      });
+      show();
+      align(input, element);
     }
 
     var cache = [];
@@ -60,17 +55,24 @@
         element.html('<i class="item loading">'+options.loadingString+'</i>');
         var term = input.val();
         if (options.cache && typeof cache[term] !== "undefined") {
-          createList(cache[term], input, element);
+          if (cache[term].length === 0) {
+            hide();
+          } else {
+            createList(cache[term], input, element);
+          }
         } else if (typeof options.handler !== "undefined") {
           options.handler(input.val(), function(data) {
             cache[term] = data;
-            createList(data, input, element);
+            if (data.length === 0) {
+              hide();
+            } else {
+              createList(data, input, element);
+            }
           });
         }
         input.data('selected', -1);
-        show(element);
       } else {
-        hide(element);
+        hide();
       }
     }
 
@@ -86,18 +88,22 @@
       });
     }
 
-    function setup(input) {
-      var element = $('<div/>')
-        .addClass('autocomplete-results hidden')
-        .text('<i class="item loading">'+options.loadingString+'</i>');
-
+    function setup(input, element) {
+      if (typeof element === 'undefined') {
+        element = $('<div/>')
+          .addClass('autocomplete-results hidden')
+          .text('<i class="item loading">'+options.loadingString+'</i>');
+      }
       align(input, element);
-      input.closest('body').append(element);
-      input.data('element', element);
+      $('body').append(element);
       input.data('selected', -1);
 
-      input.blur(function() {
-        setTimeout(function() { hide(input.data('element')); }, 100);
+      input.blur(function(e) {
+        if (e.target.acitem) {
+          setTimeout(hide, 10);
+        } else {
+          hide();
+        }
       });
       input.click(function() {
         align(input, element);
@@ -144,7 +150,7 @@
         }
       });
       input.keydown(function(event) {
-        var element = $(this).data('element');
+        var element = $.fn.autocomplete.element;
         var position = $(this).data('selected');
         switch (event.which) {
           // arrow keys through items
@@ -161,7 +167,7 @@
             break;
           }
           case 40: {
-            show(element);
+            show();
             event.preventDefault();
             if (position < options.maxResults) {
               position++;
@@ -198,23 +204,23 @@
         return input;
       }
 
-
       return element;
     }
 
     return this.each(function() {
 
       var input = $(this);
-      var element = input.data('element');
-      if (!element) {
-        element = setup(input);
+      if (!$.fn.autocomplete.element) {
+        $.fn.autocomplete.element = setup(input);
+      } else {
+        setup(input, $.fn.autocomplete.element);
       }
 
       if (typeof settings === "string") {
         if (settings === "show") {
-          show(element);
+          show();
         } else if (settings === "hide") {
-          hide(element);
+          hide();
         }
         return input;
       }
@@ -224,6 +230,7 @@
     });
   };
 
+  $.fn.autocomplete.element = false;
   $.fn.autocomplete.options = {
     ajaxDelay: 200,
     cache: true,

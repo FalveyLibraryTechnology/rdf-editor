@@ -1,0 +1,32 @@
+html { font-size: 16px; }
+
+.hidden { display: none !important; }
+
+input {
+  box-sizing: border-box;
+  height: 26px;
+  padding-left: 2px;
+}
+div {
+  display: table;
+  margin: 2px;
+  padding: 6px;
+  border: 0;
+}
+.subject {
+  margin-left: 0rem;
+  margin-top: 1rem;
+  background: #AFF;
+}
+.predicate {
+  margin-left: 4rem;
+  background: #FAA;
+}
+.object {
+  margin-left: 8rem;
+  background: #AFA;
+}
+.type {
+  margin-left: 8rem;
+  background: #FFA;
+}

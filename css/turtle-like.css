@@ -5,6 +5,7 @@
 
 body {
   background: #444;
+  color: #fff;
 }
 
 textarea {
@@ -18,4 +19,8 @@ textarea {
   background: #fff;
   border-radius: 3px;
   box-shadow: 0 0 4px #66afe9;
+}
+
+.textcomplete-dropdown {
+  color: #000;
 }
