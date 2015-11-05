@@ -49,10 +49,10 @@ function autocomplete(op, query) {
   if ('undefined' === typeof completeSets[set]) {
     return [];
   }
+  var regex = new RegExp(query, 'i');
   var items = $.map(
     completeSets[set],
     function (word) {
-      var regex = new RegExp(query, 'i');
       if (word.label.match(regex)) {
         if (typeof word.description === 'undefined') {
           return word.label;
@@ -67,24 +67,10 @@ function autocomplete(op, query) {
     }
   );
   if (items.length < 10) {
-    var dmatches = $.map(
-      completeSets[set],
-      function (word) {
-        if (typeof word.description !== 'undefined') {
-          var regex = new RegExp(query, 'i');
-          if (word.description.match(regex)) {
-            return {
-              val: word.label,
-              description: word.description
-            }
-          }
-          return null;
-        }
+    for (var i = 0; i < items.length && items.length < 10; i++) {
+      if (completeSets[set][i].description.match(regex)) {
+        items.push(completeSets[set][i]);
       }
-    );
-    var i = 0;
-    while(items.length < 10 && i < dmatches.length) {
-      items.push(dmatches[i++]);
     }
   }
   return items;
@@ -147,7 +133,8 @@ function control(e) {
 }
 function contentControl() {
   if (
-    (this.parentElement.className === 'object'
+    (this.parentElement.className === 'predicate'
+    || this.parentElement.className === 'object'
     || this.parentElement.className === 'lang')
     && this.value.match(/\^\^/)
   ) {
@@ -155,7 +142,8 @@ function contentControl() {
     var it = addNewTerm('type');
     it.value = 'xsd:';
   } else if (
-    (this.parentElement.className === 'object'
+    (this.parentElement.className === 'predicate'
+    || this.parentElement.className === 'object'
     || this.parentElement.className === 'type')
     && this.value.match(/\@/)
   ) {
@@ -213,8 +201,6 @@ function parseJSONs(jsons) {
   };
   for (var i = 0; i < jsons.length; i++) {
     for (var set in setSet) {
-      console.log(set);
-      console.log(setSet[set]);
       if (!!jsons[i][set]) {
         for (var j = 0; j < jsons[i][set].length; j++) {
           var item = { label: jsons[i].namespace + ':' + jsons[i][set][j].attr };
@@ -226,6 +212,7 @@ function parseJSONs(jsons) {
       }
     }
   }
+  console.log(completeSets);
   editor.className = '';
   document.getElementById('loading').className = 'hidden';
 }
