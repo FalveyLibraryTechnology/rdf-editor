@@ -205,41 +205,24 @@ var completeSets = {
   lang: []
 };
 function parseJSONs(jsons) {
+  var setSet = {
+    'classes': 'type',
+    'datatypes': 'datatype',
+    'languages': 'lang',
+    'predicates': 'predicate',
+  };
   for (var i = 0; i < jsons.length; i++) {
-    if (!!jsons[i].classes) {
-      for (var j = 0; j < jsons[i].classes.length; j++) {
-        var item = { label: jsons[i].namespace + ':' + jsons[i].classes[j].attr };
-        if (typeof jsons[i].classes[j].description !== 'undefined') {
-          item.description = jsons[i].classes[j].description;
+    for (var set in setSet) {
+      console.log(set);
+      console.log(setSet[set]);
+      if (!!jsons[i][set]) {
+        for (var j = 0; j < jsons[i][set].length; j++) {
+          var item = { label: jsons[i].namespace + ':' + jsons[i][set][j].attr };
+          if (typeof jsons[i][set][j].description !== 'undefined') {
+            item.description = jsons[i][set][j].description;
+          }
+          completeSets[setSet[set]].push(item);
         }
-        completeSets.type.push(item);
-      }
-    }
-    if (!!jsons[i].predicates) {
-      for (var j = 0; j < jsons[i].predicates.length; j++) {
-        var item = { label: jsons[i].namespace + ':' + jsons[i].predicates[j].attr };
-        if (typeof jsons[i].predicates[j].description !== 'undefined') {
-          item.description = jsons[i].predicates[j].description;
-        }
-        completeSets.predicate.push(item);
-      }
-    }
-    if (!!jsons[i].datatypes) {
-      for (var j = 0; j < jsons[i].datatypes.length; j++) {
-        var item = { label: jsons[i].namespace + ':' + jsons[i].datatypes[j].attr };
-        if (typeof jsons[i].datatypes[j].description !== 'undefined') {
-          item.description = jsons[i].datatypes[j].description;
-        }
-        completeSets.datatype.push(item);
-      }
-    }
-    if (!!jsons[i].languages) {
-      for (var j = 0; j < jsons[i].languages.length; j++) {
-        var item = { label: jsons[i].namespace + ':' + jsons[i].languages[j].attr };
-        if (typeof jsons[i].languages[j].description !== 'undefined') {
-          item.description = jsons[i].languages[j].description;
-        }
-        completeSets.lang.push(item);
       }
     }
   }
