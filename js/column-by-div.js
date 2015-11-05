@@ -1,3 +1,14 @@
+/*
+TODO: Generate full tree
+TODO: Render RDF
+TODO: Check for missing fields
+TODO: Autocomplete custom predicates
+TODO: Autocomplete custom prefixes
+TODO: Buttons for type and lang
+FUTURE: URI help
+FUTURE: Publish RDF
+*/
+
 var tree, current = {
   subject: false,
   predicate: false
