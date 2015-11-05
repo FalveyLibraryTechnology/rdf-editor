@@ -27,6 +27,15 @@ div {
   background: #AFA;
 }
 .type {
-  margin-left: 8rem;
+  margin-left: 12rem;
   background: #FFA;
+}
+.lang {
+  margin-left: 12rem;
+  background: #FAF;
+}
+
+.autocomplete-results .item {
+  font-size: 85%;
+  padding: .5em 1em;
 }
