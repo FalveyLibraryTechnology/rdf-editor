@@ -2,7 +2,6 @@
 TODO: Generate full tree
 TODO: Render RDF
 TODO: Check for missing fields
-TODO: URI (regex) or "" enforcement
 TODO: URI to helpful label
 TODO: Buttons for type and lang
 TODO: Blank nodes in object -> right to definition
@@ -32,6 +31,7 @@ function addNewTerm(type) {
     editor.focused = this.index;
     updateCurrents();
   }
+  input.onblur = validate;
   $(input).autocomplete({
     maxResults: 10,
     loadingString: 'Loading...',
@@ -177,6 +177,20 @@ function contentControl() {
   }
   if (this.value.substr(0, 2) == '_:') {
     $(this.parentNode).addClass('blank');
+  }
+}
+function validate() {
+  if (this.parentNode.className === 'object') {
+    if (this.value.length > 0) {
+      // http://snipplr.com/view/6889/regular-expressions-for-uri-validationparsing/
+      var regexUri = /^([a-z][a-z0-9+.-]*):(?:\/\/((?:(?=((?:[a-z0-9-._~!$&'()*+,;=:]|%[0-9A-F]{2})*))(\3)@)?(?=(\[[0-9A-F:.]{2,}\]|(?:[a-z0-9-._~!$&'()*+,;=]|%[0-9A-F]{2})*))\5(?::(?=(\d*))\6)?)(\/(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/]|%[0-9A-F]{2})*))\8)?|(\/?(?!\/)(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/]|%[0-9A-F]{2})*))\10)?)(?:\?(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/?]|%[0-9A-F]{2})*))\11)?(?:#(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/?]|%[0-9A-F]{2})*))\12)?$/i;
+      var stringUri = /^".*"$/;
+      if (this.value.match(regexUri)) {
+
+      } else if (!this.value.match(stringUri)) {
+        this.value = '"' + this.value.replace(/^["\s\uFEFF\xA0]+|["\s\uFEFF\xA0]+$/g, '') + '"';
+      }
+    }
   }
 }
 

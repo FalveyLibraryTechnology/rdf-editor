@@ -26,6 +26,7 @@ div {
   margin-left: 8rem;
   background: #AFA;
 }
+.object input { width: 400px; }
 .type {
   margin-left: 12rem;
   background: #FFA;
