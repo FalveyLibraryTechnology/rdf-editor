@@ -183,11 +183,39 @@ function validate() {
   if (this.parentNode.className === 'object') {
     if (this.value.length > 0) {
       // http://snipplr.com/view/6889/regular-expressions-for-uri-validationparsing/
+      var regexUrl = /^(https?):\/\/((?:[a-z0-9.-]|%[0-9A-F]{2}){3,})(?::(\d+))?((?:\/(?:[a-z0-9-._~!$&'()*+,;=:@]|%[0-9A-F]{2})*)*)(?:\?((?:[a-z0-9-._~!$&'()*+,;=:\/?@]|%[0-9A-F]{2})*))?(?:#((?:[a-z0-9-._~!$&'()*+,;=:\/?@]|%[0-9A-F]{2})*))?$/i;
       var regexUri = /^([a-z][a-z0-9+.-]*):(?:\/\/((?:(?=((?:[a-z0-9-._~!$&'()*+,;=:]|%[0-9A-F]{2})*))(\3)@)?(?=(\[[0-9A-F:.]{2,}\]|(?:[a-z0-9-._~!$&'()*+,;=]|%[0-9A-F]{2})*))\5(?::(?=(\d*))\6)?)(\/(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/]|%[0-9A-F]{2})*))\8)?|(\/?(?!\/)(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/]|%[0-9A-F]{2})*))\10)?)(?:\?(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/?]|%[0-9A-F]{2})*))\11)?(?:#(?=((?:[a-z0-9-._~!$&'()*+,;=:@\/?]|%[0-9A-F]{2})*))\12)?$/i;
-      var stringUri = /^".*"$/;
-      if (this.value.match(regexUri)) {
-
-      } else if (!this.value.match(stringUri)) {
+      var regexString = /^".*"$/;
+      if (this.value.match(regexUrl)) {
+        if (typeof this.helper === 'undefined') {
+          // AJAX for useful data
+          var link = document.createElement('a');
+          link.href = this.value;
+          link.innerHTML = 'link';
+          link.target = '_new';
+          link.onclick = function(e) {
+            e.stopPropagation();
+            return true;
+          }
+          var span = document.createElement('span');
+          span.appendChild(link);
+          span.onclick = function() {
+            this.className = 'hidden';
+          }
+          $(this.parentNode).prepend(span);
+          this.helper = link;
+        } else {
+          this.helper.href = this.value;
+          this.helper.parentNode.className = '';
+          this.helper.focus();
+        }
+        $.ajax({
+          url: this.value,
+          success: function(data) {
+            this.helper.innerHTML = $(data).filter('title').html();
+          }
+        });
+      } else if (!this.value.match(regexUri) && !this.value.match(regexString)) {
         this.value = '"' + this.value.replace(/^["\s\uFEFF\xA0]+|["\s\uFEFF\xA0]+$/g, '') + '"';
       }
     }
@@ -256,3 +284,4 @@ function parseJSONs(jsons) {
   editor.className = '';
   document.getElementById('loading').className = 'hidden';
 }
+

@@ -26,7 +26,7 @@ div {
   margin-left: 8rem;
   background: #AFA;
 }
-.object input { width: 400px; }
+.object input { width: 500px; }
 .type {
   margin-left: 12rem;
   background: #FFA;
@@ -34,6 +34,18 @@ div {
 .lang {
   margin-left: 12rem;
   background: #FAF;
+}
+
+div span { float: left; }
+div span.hidden { display: none; }
+div span:not(.hidden) + input { display: none; }
+div span:not(.hidden):after {
+  display: block;
+  margin-left: .5em;
+  float: right;
+  font-family: FontAwesome;
+  content: '\f040';
+  cursor: pointer;
 }
 
 .autocomplete-results .item {
