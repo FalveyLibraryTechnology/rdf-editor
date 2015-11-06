@@ -2,11 +2,13 @@
 TODO: Generate full tree
 TODO: Render RDF
 TODO: Check for missing fields
-TODO: Autocomplete custom predicates
-TODO: Autocomplete custom prefixes
+TODO: URI (regex) or "" enforcement
+TODO: URI to helpful label
 TODO: Buttons for type and lang
+TODO: Blank nodes in object -> right to definition
 FUTURE: URI help
 FUTURE: Publish RDF
+FUTURE: http://api.geonames.org/searchJSON?username=crhallberg&maxRows=5&name_startsWith=Irela
 */
 
 var tree, current = {
@@ -14,6 +16,14 @@ var tree, current = {
   predicate: false
 };
 function addNewTerm(type) {
+  if (
+    editor.focused < editor.terms.length-1
+    && editor.terms[editor.focused+1].value == ''
+  ) {
+    var next = editor.terms[editor.focused+1];
+    next.focus();
+    return next;
+  }
   var input = document.createElement('input');
   input.type = 'text';
   input.onkeydown = control;
@@ -27,6 +37,16 @@ function addNewTerm(type) {
     loadingString: 'Loading...',
     handler: function(query, cb) {
       cb(autocomplete(input, query));
+    },
+    callback: function(value, eventType) {
+      if (eventType.mouse) {
+        var n = input.parentNode.className === 'predicate'
+          ? 'object'
+          : 'predicate';
+        setTimeout(function() {
+          addNewTerm(n);
+        }, 50);
+      }
     }
   });
   var div = document.createElement('div');
@@ -143,24 +163,20 @@ function control(e) {
   }
 }
 function contentControl() {
-  if (
-    (this.parentElement.className === 'predicate'
-    || this.parentElement.className === 'object'
-    || this.parentElement.className === 'lang')
-    && this.value.match(/\^\^/)
-  ) {
-    this.value = this.value.substr(0, this.value.length-2);
-    var it = addNewTerm('type');
-    it.value = 'xsd:';
-  } else if (
-    (this.parentElement.className === 'predicate'
-    || this.parentElement.className === 'object'
-    || this.parentElement.className === 'type')
-    && this.value.match(/\@/)
-  ) {
-    this.value = this.value.substr(0, this.value.length-2);
-    var it = addNewTerm('lang');
-    it.value = 'lang:';
+  if (this.parentElement.className === 'predicate'
+    || this.parentElement.className === 'object') {
+    if (this.value.match(/\^\^/)) {
+      this.value = this.value.substr(0, this.value.length-2);
+      var it = addNewTerm('type');
+      it.value = 'xsd:';
+    } else if (this.value.match(/\@/)) {
+      this.value = this.value.substr(0, this.value.length-2);
+      var it = addNewTerm('lang');
+      it.value = 'lang:';
+    }
+  }
+  if (this.value.substr(0, 2) == '_:') {
+    $(this.parentNode).addClass('blank');
   }
 }
 
@@ -223,7 +239,6 @@ function parseJSONs(jsons) {
       }
     }
   }
-  console.log(completeSets);
   editor.className = '';
   document.getElementById('loading').className = 'hidden';
 }

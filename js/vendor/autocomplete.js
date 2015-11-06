@@ -15,9 +15,12 @@
       cache = [];
     }
 
-    function populate(value, input, element) {
+    function populate(value, input, element, eventType) {
       input.val(value);
       hide();
+      if (typeof options.callback !== 'undefined') {
+        options.callback(value, eventType);
+      }
     }
 
     function createList(data, input, element) {
@@ -42,7 +45,7 @@
       }
       element.html(op.html());
       element.find('.item').mousedown(function() {
-        populate($(this).attr('value'), input, element)
+        populate($(this).attr('value'), input, element, {mouse: true})
       });
       show();
       align(input, element);
@@ -186,7 +189,7 @@
               if (event.which === 13 && selected.attr('href')) {
                 location.assign(selected.attr('href'));
               } else {
-                populate(selected.attr('value'), $(this), element);
+                populate(selected.attr('value'), $(this), element, {key: true});
                 element.find('.item.selected').removeClass('selected');
               }
             }
