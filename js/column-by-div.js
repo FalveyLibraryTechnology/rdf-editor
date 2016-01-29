@@ -1,12 +1,13 @@
 /*
+TODO: autocomplete: val -> value
+TODO: autocomplete: label, value, description
+TODO: autocomplete: store whole object
+TODO: Toggle between URI and label
+TODO: Visual style to show "this is not a literal"
 TODO: Generate full tree
 TODO: Render RDF
-TODO: Check for missing fields
-TODO: URI to helpful label
 TODO: Buttons for type and lang
 TODO: Blank nodes in object -> right to definition
-FUTURE: Publish RDF
-FUTURE: http://api.geonames.org/searchJSON?username=crhallberg&maxRows=5&name_startsWith=Irela
 */
 
 var serviceURL = false;
@@ -54,16 +55,13 @@ function addNewTerm(type) {
         $.fn.autocomplete.ajax({
           url: serviceURL + query,
           dataType:'json',
-          success: function(json) {
-            if (json.status == 'OK' && json.data.length > 0) {
-              var datums = [];
-              for (var i=0;i<json.data.length;i++) {
-                datums.push(json.data[i]);
-              }
-              cb(datums);
-            } else {
-              cb([]);
+          success: function(objs) {
+            var datums = [];
+            for (var i=0;i<objs.length;i++) {
+              objs[i].val = objs[i].label;
+              datums.push(objs[i]);
             }
+            cb(datums);
           }
         });
         cb(autocomplete(input, query));
