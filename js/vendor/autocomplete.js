@@ -1,77 +1,84 @@
 /**
- * vufind.typeahead.js 0.1
+ * vufind.typeahead.js 0.3
  * ~ @crhallberg
  */
 (function ( $ ) {
 
-  $.fn.autocomplete = function(settings, ops) {
+  $.fn.autocomplete = function(settings) {
 
     var options = $.extend( {}, $.fn.autocomplete.options, settings );
+
     function show() {
       $.fn.autocomplete.element.removeClass(options.hidingClass);
     }
     function hide() {
       $.fn.autocomplete.element.addClass(options.hidingClass);
-      cache = [];
     }
 
-    function populate(value, input, element, eventType) {
+    function populate(value, input, eventType) {
       input.val(value);
       hide();
-      if (typeof options.callback !== 'undefined') {
-        options.callback(value, eventType);
+      if (typeof options.onselection !== 'undefined') {
+        options.onselection(value, input, eventType);
       }
     }
 
-    function createList(data, input, element) {
-      var op = $('<div/>');
+    function createList(data, input) {
+      var shell = $('<div/>');
       for (var i=0, len=Math.min(options.maxResults, data.length); i<len; i++) {
         if (typeof data[i] === 'string') {
           data[i] = {val: data[i]};
         }
+        var content = data[i].val;
+        if (options.highlight) {
+          var regex = new RegExp('('+input.val()+')', 'ig');
+          content = content.replace(regex, '<b>$1</b>');
+        }
         var item = typeof data[i].href === 'undefined'
-          ? $('<div/>').attr('value', data[i].val)
-                      .html(data[i].val)
-                      .addClass('item')
+          ? $('<div/>').addClass('item')
+                       .attr('data-value', data[i].val)
+                       .html(content)
           : $('<a/>').attr('href', data[i].href)
-                    .attr('value', data[i].val)
-                    .attr('acitem', true)
-                    .html(data[i].val)
-                    .addClass('item')
+                     .attr('data-value', data[i].val)
+                     .html(content)
         if (typeof data[i].description !== 'undefined') {
           item.append($('<small/>').text(data[i].description));
         }
-        op.append(item);
+        shell.append(item);
       }
-      element.html(op.html());
-      element.find('.item').mousedown(function() {
-        populate($(this).attr('value'), input, element, {mouse: true})
+      $.fn.autocomplete.element.html(shell.html());
+      $.fn.autocomplete.element.find('.item').mousedown(function() {
+        populate($(this).attr('data-value'), input, {mouse: true})
       });
-      show();
-      align(input, element);
+      align(input, $.fn.autocomplete.element);
     }
 
-    var cache = [];
+    $.fn.autocomplete.cache = {};
     function search(input, element) {
       if (xhr) xhr.abort();
       if (input.val().length >= options.minLength) {
         element.html('<i class="item loading">'+options.loadingString+'</i>');
+        show();
+        align(input, $.fn.autocomplete.element);
         var term = input.val();
-        if (options.cache && typeof cache[term] !== "undefined") {
-          if (cache[term].length === 0) {
+        var cid = parseInt(input.data('cache-id'));
+        if (options.cache && typeof $.fn.autocomplete.cache[cid][term] !== "undefined") {
+          if ($.fn.autocomplete.cache[cid][term].length === 0) {
             hide();
           } else {
-            createList(cache[term], input, element);
+            createList($.fn.autocomplete.cache[cid][term], input, element);
           }
         } else if (typeof options.handler !== "undefined") {
           options.handler(input.val(), function(data) {
-            cache[term] = data;
+            $.fn.autocomplete.cache[cid][term] = data;
             if (data.length === 0) {
               hide();
             } else {
               createList(data, input, element);
             }
           });
+        } else {
+          console.error('handler function not provided for autocomplete');
         }
         input.data('selected', -1);
       } else {
@@ -96,10 +103,17 @@
         element = $('<div/>')
           .addClass('autocomplete-results hidden')
           .text('<i class="item loading">'+options.loadingString+'</i>');
+        align(input, element);
+        $('body').append(element);
       }
-      align(input, element);
-      $('body').append(element);
+
       input.data('selected', -1);
+
+      if (options.cache) {
+        var cid = Math.floor(Math.random()*1000);
+        input.data('cache-id', cid);
+        $.fn.autocomplete.cache[cid] = {};
+      }
 
       input.blur(function(e) {
         if (e.target.acitem) {
@@ -109,16 +123,10 @@
         }
       });
       input.click(function() {
-        align(input, element);
-        if (element.hasClass(options.hidingClass)) {
-          search(input, element);
-        }
+        search(input, element);
       });
       input.focus(function() {
-        align(input, element);
-        if (element.hasClass(options.hidingClass)) {
-          search(input, element);
-        }
+        search(input, element);
       });
       input.keyup(function(event) {
         if (event.ctrlKey) {
@@ -189,10 +197,16 @@
               if (event.which === 13 && selected.attr('href')) {
                 location.assign(selected.attr('href'));
               } else {
-                populate(selected.attr('value'), $(this), element, {key: true});
+                populate(selected.attr('data-value'), $(this), element, {key: true});
                 element.find('.item.selected').removeClass('selected');
               }
             }
+            break;
+          }
+          // hide on escape
+          case 27: {
+            hide(element);
+            $(this).data('selected', -1);
             break;
           }
         }
@@ -213,19 +227,24 @@
     return this.each(function() {
 
       var input = $(this);
-      if (!$.fn.autocomplete.element) {
-        $.fn.autocomplete.element = setup(input);
-      } else {
-        setup(input, $.fn.autocomplete.element);
-      }
 
       if (typeof settings === "string") {
         if (settings === "show") {
           show();
+          align(input, $.fn.autocomplete.element);
         } else if (settings === "hide") {
           hide();
+        } else if (settings === "clear cache" && options.cache) {
+          var cid = parseInt(input.data('cache-id'));
+          $.fn.autocomplete.cache[cid] = {};
         }
         return input;
+      } else {
+        if (!$.fn.autocomplete.element) {
+          $.fn.autocomplete.element = setup(input);
+        } else {
+          setup(input, $.fn.autocomplete.element);
+        }
       }
 
       return input;

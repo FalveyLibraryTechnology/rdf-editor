@@ -1,0 +1,210 @@
+{
+  "namespace": "owl",
+  "uri": "http://www.w3.org/2002/07/owl#",
+  "predicates": [
+    {
+      "label": "allValuesFrom",
+      "description": "The property that determines the class that a universal property restriction refers to."
+    },
+    {
+      "label": "annotatedProperty",
+      "description": "The property that determines the predicate of an annotated axiom or annotated annotation."
+    },
+    {
+      "label": "annotatedSource",
+      "description": "The property that determines the subject of an annotated axiom or annotated annotation."
+    },
+    {
+      "label": "annotatedTarget",
+      "description": "The property that determines the object of an annotated axiom or annotated annotation."
+    },
+    {
+      "label": "assertionProperty",
+      "description": "The property that determines the predicate of a negative property assertion."
+    },
+    {
+      "label": "backwardCompatibleWith",
+      "description": "The annotation property that indicates that a given ontology is backward compatible with another ontology."
+    },
+    {
+      "label": "bottomDataProperty",
+      "description": "The data property that does not relate any individual to any data value."
+    },
+    {
+      "label": "bottomObjectProperty",
+      "description": "The object property that does not relate any two individuals."
+    },
+    {
+      "label": "cardinality",
+      "description": "The property that determines the cardinality of an exact cardinality restriction."
+    },
+    {
+      "label": "complementOf",
+      "description": "The property that determines that a given class is the complement of another class."
+    },
+    {
+      "label": "datatypeComplementOf",
+      "description": "The property that determines that a given data range is the complement of another data range with respect to the data domain."
+    },
+    {
+      "label": "deprecated",
+      "description": "The annotation property that indicates that a given entity has been deprecated."
+    },
+    {
+      "label": "differentFrom",
+      "description": "The property that determines that two given individuals are different."
+    },
+    {
+      "label": "disjointUnionOf",
+      "description": "The property that determines that a given class is equivalent to the disjoint union of a collection of other classes."
+    },
+    {
+      "label": "disjointWith",
+      "description": "The property that determines that two given classes are disjoint."
+    },
+    {
+      "label": "distinctMembers",
+      "description": "The property that determines the collection of pairwise different individuals in a owl:AllDifferent axiom."
+    },
+    {
+      "label": "equivalentClass",
+      "description": "The property that determines that two given classes are equivalent, and that is used to specify datatype definitions."
+    },
+    {
+      "label": "equivalentProperty",
+      "description": "The property that determines that two given properties are equivalent."
+    },
+    {
+      "label": "hasKey",
+      "description": "The property that determines the collection of properties that jointly build a key."
+    },
+    {
+      "label": "hasSelf",
+      "description": "The property that determines the property that a self restriction refers to."
+    },
+    {
+      "label": "hasValue",
+      "description": "The property that determines the individual that a has-value restriction refers to."
+    },
+    {
+      "label": "imports",
+      "description": "The property that is used for importing other ontologies into a given ontology."
+    },
+    {
+      "label": "incompatibleWith",
+      "description": "The annotation property that indicates that a given ontology is incompatible with another ontology."
+    },
+    {
+      "label": "intersectionOf",
+      "description": "The property that determines the collection of classes or data ranges that build an intersection."
+    },
+    {
+      "label": "inverseOf",
+      "description": "The property that determines that two given properties are inverse."
+    },
+    {
+      "label": "maxCardinality",
+      "description": "The property that determines the cardinality of a maximum cardinality restriction."
+    },
+    {
+      "label": "maxQualifiedCardinality",
+      "description": "The property that determines the cardinality of a maximum qualified cardinality restriction."
+    },
+    {
+      "label": "members",
+      "description": "The property that determines the collection of members in either a owl:AllDifferent, owl:AllDisjointClasses or owl:AllDisjointProperties axiom."
+    },
+    {
+      "label": "minCardinality",
+      "description": "The property that determines the cardinality of a minimum cardinality restriction."
+    },
+    {
+      "label": "minQualifiedCardinality",
+      "description": "The property that determines the cardinality of a minimum qualified cardinality restriction."
+    },
+    {
+      "label": "onClass",
+      "description": "The property that determines the class that a qualified object cardinality restriction refers to."
+    },
+    {
+      "label": "onDataRange",
+      "description": "The property that determines the data range that a qualified data cardinality restriction refers to."
+    },
+    {
+      "label": "onDatatype",
+      "description": "The property that determines the datatype that a datatype restriction refers to."
+    },
+    {
+      "label": "oneOf",
+      "description": "The property that determines the collection of individuals or data values that build an enumeration."
+    },
+    {
+      "label": "onProperties",
+      "description": "The property that determines the n-tuple of properties that a property restriction on an n-ary data range refers to."
+    },
+    {
+      "label": "onProperty",
+      "description": "The property that determines the property that a property restriction refers to."
+    },
+    {
+      "label": "priorVersion",
+      "description": "The annotation property that indicates the predecessor ontology of a given ontology."
+    },
+    {
+      "label": "propertyChainAxiom",
+      "description": "The property that determines the n-tuple of properties that build a sub property chain of a given property."
+    },
+    {
+      "label": "propertyDisjointWith",
+      "description": "The property that determines that two given properties are disjoint."
+    },
+    {
+      "label": "qualifiedCardinality",
+      "description": "The property that determines the cardinality of an exact qualified cardinality restriction."
+    },
+    {
+      "label": "sameAs",
+      "description": "The property that determines that two given individuals are equal."
+    },
+    {
+      "label": "someValuesFrom",
+      "description": "The property that determines the class that an existential property restriction refers to."
+    },
+    {
+      "label": "sourceIndividual",
+      "description": "The property that determines the subject of a negative property assertion."
+    },
+    {
+      "label": "targetIndividual",
+      "description": "The property that determines the object of a negative object property assertion."
+    },
+    {
+      "label": "targetValue",
+      "description": "The property that determines the value of a negative data property assertion."
+    },
+    {
+      "label": "topDataProperty",
+      "description": "The data property that relates every individual to every data value."
+    },
+    {
+      "label": "topObjectProperty",
+      "description": "The object property that relates every two individuals."
+    },
+    {
+      "label": "unionOf",
+      "description": "The property that determines the collection of classes or data ranges that build a union."
+    },
+    {
+      "label": "versionInfo",
+      "description": "The annotation property that provides version information for an ontology or another OWL construct."
+    },
+    {
+      "label": "versionIRI",
+      "description": "The property that identifies the version IRI of an ontology."
+    },
+    {
+      "label": "withRestrictions",
+      "description": "The property that determines the collection of facet-value pairs that define a datatype restriction."
+    }
+  ]
+}

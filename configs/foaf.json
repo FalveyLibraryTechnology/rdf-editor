@@ -1,0 +1,276 @@
+{
+  "namespace": "foaf",
+  "uri": "http://xmlns.com/foaf/spec/",
+  "predicates": [
+    {
+      "attr": "homepage",
+      "description": "A homepage for some thing.",
+      "label": "homepage"
+    },
+    {
+      "attr": "isPrimaryTopicOf",
+      "description": "A document that this thing is the primary topic of.",
+      "label": "is primary topic of"
+    },
+    {
+      "attr": "knows",
+      "description": "A person known by this person (indicating some level of reciprocated interaction between the parties).",
+      "label": "knows"
+    },
+    {
+      "attr": "made",
+      "description": "Something that was made by this agent.",
+      "label": "made"
+    },
+    {
+      "attr": "maker",
+      "description": "An agent that  made this thing.",
+      "label": "maker"
+    },
+    {
+      "attr": "mbox",
+      "description": "A  personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.",
+      "label": "personal mailbox"
+    },
+    {
+      "attr": "member",
+      "description": "Indicates a member of a Group",
+      "label": "member"
+    },
+    {
+      "attr": "page",
+      "description": "A page or document about this thing.",
+      "label": "page"
+    },
+    {
+      "attr": "primaryTopic",
+      "description": "The primary topic of some page or document.",
+      "label": "primary topic"
+    },
+    {
+      "attr": "weblog",
+      "description": "A weblog of some thing (whether person, group, company etc.).",
+      "label": "weblog"
+    },
+    {
+      "attr": "account",
+      "description": "Indicates an account held by this agent.",
+      "label": "account"
+    },
+    {
+      "attr": "accountName",
+      "description": "Indicates the name (identifier) associated with this online account.",
+      "label": "account name"
+    },
+    {
+      "attr": "accountServiceHomepage",
+      "description": "Indicates a homepage of the service provide for this online account.",
+      "label": "account service homepage"
+    },
+    {
+      "attr": "aimChatID",
+      "description": "An AIM chat ID",
+      "label": "AIM chat ID"
+    },
+    {
+      "attr": "based_near",
+      "description": "A location that something is based near, for some broadly human notion of near.",
+      "label": "based near"
+    },
+    {
+      "attr": "currentProject",
+      "description": "A current project this person works on.",
+      "label": "current project"
+    },
+    {
+      "attr": "depiction",
+      "description": "A depiction of some thing.",
+      "label": "depiction"
+    },
+    {
+      "attr": "depicts",
+      "description": "A thing depicted in this representation.",
+      "label": "depicts"
+    },
+    {
+      "attr": "familyName",
+      "description": "The family name of some person.",
+      "label": "familyName"
+    },
+    {
+      "attr": "firstName",
+      "description": "The first name of a person.",
+      "label": "firstName"
+    },
+    {
+      "attr": "focus",
+      "description": "The underlying or 'focal' entity associated with some SKOS-described concept.",
+      "label": "focus"
+    },
+    {
+      "attr": "gender",
+      "description": "The gender of this Agent (typically but not necessarily 'male' or 'female').",
+      "label": "gender"
+    },
+    {
+      "attr": "givenName",
+      "description": "The given name of some person.",
+      "label": "Given name"
+    },
+    {
+      "attr": "icqChatID",
+      "description": "An ICQ chat ID",
+      "label": "ICQ chat ID"
+    },
+    {
+      "attr": "img",
+      "description": "An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).",
+      "label": "image"
+    },
+    {
+      "attr": "interest",
+      "description": "A page about a topic of interest to this person.",
+      "label": "interest"
+    },
+    {
+      "attr": "jabberID",
+      "description": "A jabber ID for something.",
+      "label": "jabber ID"
+    },
+    {
+      "attr": "lastName",
+      "description": "The last name of a person.",
+      "label": "lastName"
+    },
+    {
+      "attr": "logo",
+      "description": "A logo representing some thing.",
+      "label": "logo"
+    },
+    {
+      "attr": "mbox_sha1sum",
+      "description": "The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the  first owner of the mailbox.",
+      "label": "sha1sum of a personal mailbox URI name"
+    },
+    {
+      "attr": "msnChatID",
+      "description": "An MSN chat ID",
+      "label": "MSN chat ID"
+    },
+    {
+      "attr": "myersBriggs",
+      "description": "A Myers Briggs (MBTI) personality classification.",
+      "label": "myersBriggs"
+    },
+    {
+      "attr": "name",
+      "description": "A name for some thing.",
+      "label": "name"
+    },
+    {
+      "attr": "nick",
+      "description": "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).",
+      "label": "nickname"
+    },
+    {
+      "attr": "openid",
+      "description": "An OpenID for an Agent.",
+      "label": "openid"
+    },
+    {
+      "attr": "pastProject",
+      "description": "A project this person has previously worked on.",
+      "label": "past project"
+    },
+    {
+      "attr": "phone",
+      "description": "A phone,  specified using fully qualified tel: URI scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).",
+      "label": "phone"
+    },
+    {
+      "attr": "plan",
+      "description": "A .plan comment, in the tradition of finger and '.plan' files.",
+      "label": "plan"
+    },
+    {
+      "attr": "publications",
+      "description": "A link to the publications of this person.",
+      "label": "publications"
+    },
+    {
+      "attr": "schoolHomepage",
+      "description": "A homepage of a school attended by the person.",
+      "label": "schoolHomepage"
+    },
+    {
+      "attr": "skypeID",
+      "description": "A Skype ID",
+      "label": "Skype ID"
+    },
+    {
+      "attr": "thumbnail",
+      "description": "A derived thumbnail image.",
+      "label": "thumbnail"
+    },
+    {
+      "attr": "tipjar",
+      "description": "A tipjar document for this agent, describing means for payment and reward.",
+      "label": "tipjar"
+    },
+    {
+      "attr": "title",
+      "description": "Title (Mr, Mrs, Ms, Dr. etc)",
+      "label": "title"
+    },
+    {
+      "attr": "topic",
+      "description": "A topic of some page or document.",
+      "label": "topic"
+    },
+    {
+      "attr": "topic_interest",
+      "description": "A thing of interest to this person.",
+      "label": "topic_interest"
+    },
+    {
+      "attr": "workInfoHomepage",
+      "description": "A work info homepage of some person; a page about their work for some organization.",
+      "label": "work info homepage"
+    },
+    {
+      "attr": "workplaceHomepage",
+      "description": "A workplace homepage of some person; the homepage of an organization they work for.",
+      "label": "workplace homepage"
+    },
+    {
+      "attr": "yahooChatID",
+      "description": "A Yahoo chat ID",
+      "label": "Yahoo chat ID"
+    },
+    {
+      "attr": "age",
+      "description": "The age in years of some agent.",
+      "label": "age"
+    },
+    {
+      "attr": "birthday",
+      "description": "The birthday of this Agent, represented in mm-dd string form, eg. '12-31'.",
+      "label": "birthday"
+    },
+    {
+      "attr": "membershipClass",
+      "description": "Indicates the class of individuals that are a member of a Group",
+      "label": "membershipClass"
+    },
+    {
+      "attr": "sha1",
+      "description": "A sha1sum hash, in hex.",
+      "label": "sha1sum (hex)"
+    },
+    {
+      "attr": "status",
+      "description": "A string expressing what the user is happy for the general public (normally) to know about their current activity.",
+      "label": "status"
+    }
+  ]
+}

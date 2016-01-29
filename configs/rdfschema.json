@@ -1,0 +1,51 @@
+{
+  "namespace": "rdfs",
+  "uri": "http://www.w3.org/2000/01/rdf-schema#",
+  "predicates": [
+    {
+      "attr": "subClassOf",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "description": "The subject is a subclass of a class."
+    },
+    {
+      "attr": "subPropertyOf",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+      "description": "The subject is a subproperty of a property."
+    },
+    {
+      "attr": "comment",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#comment",
+      "description": "A description of the subject resource."
+    },
+    {
+      "attr": "label",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#label",
+      "description": "A human-readable name for the subject."
+    },
+    {
+      "attr": "domain",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#domain",
+      "description": "A domain of the subject property."
+    },
+    {
+      "attr": "range",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#range",
+      "description": "A range of the subject property."
+    },
+    {
+      "attr": "seeAlso",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "description": "Further information about the subject resource."
+    },
+    {
+      "attr": "isDefinedBy",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
+      "description": "The defininition of the subject resource."
+    },
+    {
+      "attr": "member",
+      "uri": "http://www.w3.org/2000/01/rdf-schema#member",
+      "description": "A member of the subject resource."
+    }
+  ]
+}

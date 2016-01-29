@@ -1,0 +1,12 @@
+{
+  "subject_service": "http://falveydev.villanova.edu:3000/qa/search/nova/lc?q=",
+  "ontologies": [
+    "./configs/dc.json",
+    "./configs/foaf.json",
+    "./configs/owl.json",
+    "./configs/rdf.json",
+    "./configs/rdfschema.json",
+    "./configs/schema.org.json",
+    "./configs/xsd.json"
+  ]
+}

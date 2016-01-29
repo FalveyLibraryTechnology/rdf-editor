@@ -7,8 +7,11 @@ function load(file, bar) {
       xhr.onreadystatechange = function() {
         var DONE = this.DONE || 4;
         if (this.readyState === DONE) {
+          console.log(file, this.response);
           resolve(this.response);
-          bar.value = bar.value + 1;
+          if (bar) {
+            bar.value = bar.value + 1;
+          }
         }
       };
       xhr.send();
