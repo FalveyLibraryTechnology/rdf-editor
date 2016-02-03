@@ -1,7 +1,7 @@
 /*
-TODO: autocomplete: val -> value
 TODO: autocomplete: label, value, description
 TODO: autocomplete: store whole object
+TODO: autocomplete: one handler
 TODO: Toggle between URI and label
 TODO: Visual style to show "this is not a literal"
 TODO: Generate full tree
@@ -48,29 +48,55 @@ function addNewTerm(type) {
       }, 50);
     }
   }
+  function solrToJson(solr) {
+    console.log(JSON.stringify(solr));
+    if (solr.response.numFound == 0) {
+      return [];
+    }
+    var datums = [];
+    for (var i=0;i<solr.response.numFound;i++) {
+      var doc = solr.response.docs[i];
+      datums.push({
+        uri: doc.id,
+        label: doc.prefLabel_ssim[0],
+        narrower: doc.narrower_ssim,
+      })
+    }
+    return datums;
+  }
   if (type == 'object') {
     $(input).autocomplete({
-      maxResults: 10,
+      maxResults: 20,
+      minLength: 1,
       handler: function (query, cb) {
         $.fn.autocomplete.ajax({
           url: serviceURL + query,
           dataType:'json',
-          success: function(objs) {
-            var datums = [];
-            for (var i=0;i<objs.length;i++) {
-              objs[i].val = objs[i].label;
-              datums.push(objs[i]);
-            }
-            cb(datums);
-          }
+          success: cb
         });
-        cb(autocomplete(input, query));
+      },
+      broadSearch: function (src, cb) {
+        console.log(src.broader)
+        $.fn.autocomplete.ajax({
+          url: src.broader,
+          dataType:'json',
+          success: cb
+        });
+      },
+      narrowSearch: function (src, cb) {
+        console.log(src.narrower)
+        $.fn.autocomplete.ajax({
+          url: src.narrower,
+          dataType:'json',
+          success: cb
+        });
       },
       callback: callback
     });
-  } else {
+  } else if (type == 'predicate') {
     $(input).autocomplete({
       maxResults: 10,
+      minLength: 1,
       handler: function (query, cb) {
         cb(autocomplete(input, query));
       },
@@ -203,7 +229,7 @@ function validate() {
           }
         });
       } else if (!this.value.match(regexUri) && !this.value.match(regexString)) {
-        this.value = '"' + this.value.replace(/^["\s\uFEFF\xA0]+|["\s\uFEFF\xA0]+$/g, '') + '"';
+        this.value = '"""' + this.value.replace(/^["\s\uFEFF\xA0]+|["\s\uFEFF\xA0]+$/g, '') + '"""';
       }
     }
   }
@@ -233,7 +259,7 @@ function init() {
   addNewTerm('subject');
   load('./config.json', false).then(function (config) {
     loadAll(config.ontologies).then(parseConfigs);
-    serviceURL = config.subject_service;
+    serviceURL = config.object_service;
   });
 }
 
@@ -281,7 +307,7 @@ function autocomplete(el, query) {
       return op.label;
     } else {
       return {
-        val: op.uri,
+        value: op.uri,
         description: op.description
       }
     }

@@ -48,7 +48,11 @@ div span:not(.hidden):after {
   cursor: pointer;
 }
 
+.autocomplete-results .list {
+  margin: 0;
+  padding: 0;
+}
 .autocomplete-results .item {
   font-size: 85%;
-  padding: .5em 1em;
+  padding: .5em 1.5em;
 }

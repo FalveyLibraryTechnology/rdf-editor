@@ -1,5 +1,5 @@
 {
-  "subject_service": "http://falveydev.villanova.edu:3000/qa/search/nova/lc?q=",
+  "object_service": "http://hermes.library.villanova.edu:3000/qa/search/local/lc_subjects?q=",
   "ontologies": [
     "./configs/dc.json",
     "./configs/foaf.json",
