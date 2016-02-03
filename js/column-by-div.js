@@ -1,8 +1,4 @@
 /*
-TODO: autocomplete: label, value, description
-TODO: autocomplete: store whole object
-TODO: autocomplete: one handler
-TODO: Toggle between URI and label
 TODO: Visual style to show "this is not a literal"
 TODO: Generate full tree
 TODO: Render RDF
@@ -34,11 +30,12 @@ function addNewTerm(type) {
     updateCurrents();
   }
   input.onblur = validate;
-  var div = document.createElement('div');
-  div.className = type;
-  if (typeof type === 'undefined') {
+  // Make element
+  if ('undefined' === typeof type) {
     type = 'predicate';
   }
+  var div = document.createElement('div');
+  div.className = type;
   // Autocomplete
   function callback(value, eventType) {
     if (eventType.mouse) {
@@ -47,22 +44,6 @@ function addNewTerm(type) {
         addNewTerm(n);
       }, 50);
     }
-  }
-  function solrToJson(solr) {
-    console.log(JSON.stringify(solr));
-    if (solr.response.numFound == 0) {
-      return [];
-    }
-    var datums = [];
-    for (var i=0;i<solr.response.numFound;i++) {
-      var doc = solr.response.docs[i];
-      datums.push({
-        uri: doc.id,
-        label: doc.prefLabel_ssim[0],
-        narrower: doc.narrower_ssim,
-      })
-    }
-    return datums;
   }
   if (type == 'object') {
     $(input).autocomplete({
@@ -76,19 +57,29 @@ function addNewTerm(type) {
         });
       },
       broadSearch: function (src, cb) {
-        console.log(src.broader)
+        // console.log(src.broader);
         $.fn.autocomplete.ajax({
           url: src.broader,
           dataType:'json',
-          success: cb
+          success: function(data) {
+            cb(data.map(function(op) {
+              op.value = op.uri;
+              return op;
+            }));
+          }
         });
       },
       narrowSearch: function (src, cb) {
-        console.log(src.narrower)
+        // console.log(src.narrower);
         $.fn.autocomplete.ajax({
           url: src.narrower,
           dataType:'json',
-          success: cb
+          success: function(data) {
+            cb(data.map(function(op) {
+              op.value = op.uri;
+              return op;
+            }));
+          }
         });
       },
       callback: callback
@@ -158,7 +149,9 @@ function control(e) {
   } else if (empty) {
     if (9 === e.which) { // TAB
       e.preventDefault();
-      this.parentNode.className = e.shiftKey ? outdent[this.parentNode.className] : indent[this.parentNode.className];
+      this.parentNode.className = e.shiftKey
+        ? outdent[this.parentNode.className]
+        : indent[this.parentNode.className];
       updateCurrents();
     } else if (8 === e.which) { // BACKSPACE
       this.parentNode.className = outdent[this.parentNode.className];
@@ -171,6 +164,18 @@ function control(e) {
       }
       editor.removeChild(this.parentNode);
       editor.terms[Math.min(oldIndex, editor.terms.length - 1)].focus();
+    }
+  } else {
+    if (9 === e.which) { // TAB
+      setTimeout(function() {
+        e.preventDefault();
+        var focus = document.querySelector('input:focus');
+        if (!focus) {
+          addNewTerm().focus();
+        } else if (e.srcElement == focus) {
+          addNewTerm(indent[this.parentNode.className]).focus();
+        }
+      }, 100);
     }
   }
 }
@@ -193,6 +198,10 @@ function contentControl() {
 }
 
 function validate() {
+  var selection = $(this).data('selection');
+  if ('undefined' === typeof selection) {
+    selection = {value: this.value};
+  }
   if (this.parentNode.className === 'object') {
     if (this.value.length > 0) {
       // http://snipplr.com/view/6889/regular-expressions-for-uri-validationparsing/
@@ -203,18 +212,18 @@ function validate() {
         if (typeof this.helper === 'undefined') {
           // AJAX for useful data
           var link = document.createElement('a');
-          link.href = this.value;
-          link.innerHTML = 'link';
+          link.href = selection.value;
+          link.innerHTML = selection.label || 'uri';
           link.target = '_new';
           link.onclick = function (e) {
             e.stopPropagation();
             return true;
-          }
+          };
           var span = document.createElement('span');
           span.appendChild(link);
           span.onclick = function () {
             this.className = 'hidden';
-          }
+          };
           $(this.parentNode).prepend(span);
           this.helper = link;
         } else {

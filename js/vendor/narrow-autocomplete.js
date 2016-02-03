@@ -28,10 +28,11 @@
       $.fn.autocomplete.element.addClass(options.hidingClass);
     }
 
-    function populate(value, input, eventType) {
-      input.val(value);
+    function populate(data, input, eventType) {
+      input.val(data.value);
+      input.data('selection', data);
+      input.trigger('autocomplete:select', {value: data.value, eventType: eventType});
       hide();
-      input.trigger('autocomplete:select', {value: value, eventType: eventType});
     }
 
     function dataToListEl(data, length, term) {
@@ -94,7 +95,7 @@
       });
       $.fn.autocomplete.element.html(list);
       $.fn.autocomplete.element.find('.item').mousedown(function() {
-        populate($(this).attr('data-value'), input, {mouse: true});
+        populate($(this).data(), input, {mouse: true});
       });
       align(input, $.fn.autocomplete.element);
     }
@@ -300,7 +301,7 @@
               if (event.which === 13 && selected.attr('href')) {
                 location.assign(selected.attr('href'));
               } else {
-                populate(selected.attr('data-value'), $(this), element, {key: true});
+                populate(selected.data(), $(this), element, {key: true});
                 element.find('.item.selected').removeClass('selected');
                 $(this).data('selected', -1);
               }
