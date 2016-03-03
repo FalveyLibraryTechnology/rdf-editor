@@ -37,9 +37,10 @@ function addNewTerm(type) {
   var div = document.createElement('div');
   div.className = type;
   // Autocomplete
-  function callback(value, eventType) {
+  function callback(value, input, eventType) {
     if (eventType.mouse) {
-      var n = input.parentNode.className === 'predicate' ? 'object' : 'predicate';
+      console.log('autocomplete mouse');
+      var n = input.parent().hasClass('predicate') ? 'object' : 'predicate';
       setTimeout(function () {
         addNewTerm(n);
       }, 50);
@@ -113,25 +114,12 @@ function addNewTerm(type) {
   return input;
 }
 
-var indent = {
-  'subject': 'predicate',
-  'predicate': 'object',
-  'object': 'object',
-  'type': 'type',
-};
-var outdent = {
-  'subject': 'subject',
-  'predicate': 'subject',
-  'object': 'predicate',
-  'type': 'type',
-};
-
 function control(e) {
   var empty = this.value.length === 0;
   if (13 === e.which) { // ENTER
     e.preventDefault();
     if (empty) {
-      this.parentNode.className = outdent[this.parentNode.className];
+      this.parentNode.className = 'predicate';
       updateCurrents();
     } else {
       var n = this.parentNode.className === 'predicate' ? 'object' : 'predicate';
@@ -150,11 +138,11 @@ function control(e) {
     if (9 === e.which) { // TAB
       e.preventDefault();
       this.parentNode.className = e.shiftKey
-        ? outdent[this.parentNode.className]
-        : indent[this.parentNode.className];
+        ? 'predicate'
+        : 'object';
       updateCurrents();
     } else if (8 === e.which) { // BACKSPACE
-      this.parentNode.className = outdent[this.parentNode.className];
+      this.parentNode.className = 'predicate';
       updateCurrents();
     } else if (46 === e.which) { // DELETE
       var oldIndex = this.index;
@@ -168,11 +156,8 @@ function control(e) {
   } else {
     if (9 === e.which) { // TAB
       setTimeout(function() {
-        var focus = document.querySelector('input:focus');
-        if (!focus) {
+        if (!document.querySelector('input:focus')) {
           addNewTerm().focus();
-        } else if (e.srcElement == focus) {
-          addNewTerm(indent[this.parentNode.className]).focus();
         }
       }, 10);
     }

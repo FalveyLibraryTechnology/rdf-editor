@@ -31,7 +31,9 @@
     function populate(data, input, eventType) {
       input.val(data.value);
       input.data('selection', data);
-      input.trigger('autocomplete:select', {value: data.value, eventType: eventType});
+      if (options.callback) {
+        options.callback(data, input, eventType);
+      }
       hide();
     }
 
