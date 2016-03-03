@@ -168,14 +168,13 @@ function control(e) {
   } else {
     if (9 === e.which) { // TAB
       setTimeout(function() {
-        e.preventDefault();
         var focus = document.querySelector('input:focus');
         if (!focus) {
           addNewTerm().focus();
         } else if (e.srcElement == focus) {
           addNewTerm(indent[this.parentNode.className]).focus();
         }
-      }, 100);
+      }, 10);
     }
   }
 }
@@ -231,12 +230,6 @@ function validate() {
           this.helper.parentNode.className = '';
           this.helper.focus();
         }
-        $.ajax({
-          url: this.value,
-          success: function (data) {
-            this.helper.innerHTML = $(data).filter('title').html();
-          }
-        });
       } else if (!this.value.match(regexUri) && !this.value.match(regexString)) {
         this.value = '"""' + this.value.replace(/^["\s\uFEFF\xA0]+|["\s\uFEFF\xA0]+$/g, '') + '"""';
       }
